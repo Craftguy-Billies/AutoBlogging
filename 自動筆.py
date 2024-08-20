@@ -100,8 +100,6 @@ def titler(outline, query, max_retries=3, delay=2):
             article_title = extract_json_content(article_title)["title"]
             if article_title:
                   return article_title
-            else:
-                raise ValueError("Filtered headers is empty, retrying...")
 
         except Exception as e:
             attempt += 1
@@ -144,8 +142,6 @@ def structurer(result_list, query, max_retries=3, delay=2):
             filtered_headers = extract_list_content(filtered_headers)
             if filtered_headers:
                   return filtered_headers
-            else:
-                raise ValueError("Filtered headers is empty, retrying...")
 
         except Exception as e:
             attempt += 1
@@ -186,8 +182,6 @@ def topic_definer(website_text, query, max_retries=3, delay=2):
             filtered_headers = extract_list_content(filtered_headers)
             if filtered_headers:
                     return filtered_headers
-            else:
-                raise ValueError("Filtered headers is empty, retrying...")
 
         except Exception as e:
             attempt += 1
@@ -234,8 +228,6 @@ def topic_refiner(topics, query, max_retries=3, delay=2):
             filtered_headers = topic_selector(filtered_headers, query)
             if filtered_headers:
                     return filtered_headers
-            else:
-                raise ValueError("Filtered headers is empty, retrying...")
 
         except Exception as e:
             attempt += 1
@@ -275,8 +267,6 @@ def topic_selector(headers, query, max_retries=3, delay=2):
             filtered_headers = extract_list_content(filtered_headers)
             if filtered_headers:
                   return filtered_headers
-            else:
-                raise ValueError("Filtered headers is empty, retrying...")
 
         except Exception as e:
             attempt += 1
@@ -333,8 +323,6 @@ def querier(header, query, max_retries=3, delay=2):
             thequery = extract_list_content(thequery)
             if thequery:
                   return thequery
-            else:
-                raise ValueError("The query is empty, retrying...")
         
         except Exception as e:
             attempt += 1
