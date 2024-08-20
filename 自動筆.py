@@ -405,7 +405,7 @@ def get_title_from_url(url):
     except requests.exceptions.RequestException as e:
         return None
 
-query = "上班族有甚麼額外技能可以培養"
+query = "如何在大學中認識女生"
 outline = headerizer(structurer(crawl_top_10_results(query), query), query)
 final_article = ""
 title = titler(outline, query)
