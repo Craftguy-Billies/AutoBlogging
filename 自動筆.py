@@ -9,7 +9,7 @@ import random
 
 client = OpenAI(
   base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = "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"
+  api_key = "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"
 )
 
 def crawl_top_10_results(query, nor=10):
