@@ -174,6 +174,45 @@ def topic_refiner(topics, query, max_retries=3, delay=2):
                     filtered_headers += chunk.choices[0].delta.content
             
             filtered_headers = extract_list_content(filtered_headers)
+            filtered_headers = topic_selector(filtered_headers, query)
+            return filtered_headers
+
+        except Exception as e:
+            attempt += 1
+            if attempt < max_retries:
+                sleep_time = delay * (2 ** attempt) + random.uniform(0, 1)
+                time.sleep(sleep_time)
+            else:
+                raise
+
+def topic_selector(headers, query, max_retries=3, delay=2):
+    attempt = 0
+    while attempt < max_retries:
+        try:
+            prompt = f"""
+            i want to write a blog article of the keyword {query}.
+            now here is the proposed h2 headers for writing. but there might be duplicated aspects, or headers with unclear intent.
+            there might be vague headers with different level of specificity as well.
+            delete these vague or inappropriate headers ONLY. no need to modify acceptable headers.
+            return me a python list of h2 headers.
+            NO premable and explanation. I only want the list without other words.
+            """
+
+            completion = client.chat.completions.create(
+                model="meta/llama-3.1-405b-instruct",
+                messages=[{"role": "user", "content": prompt.strip()}],
+                temperature=0.2,
+                top_p=0.7,
+                max_tokens=8192,
+                stream=True
+            )
+
+            filtered_headers = ""
+            for chunk in completion:
+                if chunk.choices[0].delta.content is not None:
+                    filtered_headers += chunk.choices[0].delta.content
+
+            filtered_headers = extract_list_content(filtered_headers)
             return filtered_headers
 
         except Exception as e:
@@ -310,7 +349,7 @@ def get_title_from_url(url):
     except requests.exceptions.RequestException as e:
         return None
 
-query = "全香港有什麼保齡球場？"
+query = "現今社會那種手機的性價比最好？"
 outline = headerizer(structurer(crawl_top_10_results(query), query), query)
 print("+++++++++++++++++++++")
 print(outline)
@@ -329,7 +368,7 @@ for header in outline:
             bullet_points = combine_multiline_strings(bullet_points, bulletpt)
     final = ai_rewriter(bullet_points, header)
 
-    with open('bowling.txt', 'a') as file:
+    with open('phone.txt', 'a') as file:
       file.write("\n")
       file.write(final)
       file.write("\n")
