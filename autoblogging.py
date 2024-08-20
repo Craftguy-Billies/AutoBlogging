@@ -91,7 +91,10 @@ def structurer(result_list, query, max_retries=3, delay=2):
                     filtered_headers += chunk.choices[0].delta.content
             
             filtered_headers = extract_list_content(filtered_headers)
-            return filtered_headers
+            if filtered_headers:
+                  return filtered_headers
+            else:
+                raise
 
         except Exception as e:
             attempt += 1
@@ -130,7 +133,10 @@ def topic_definer(website_text, query, max_retries=3, delay=2):
                     filtered_headers += chunk.choices[0].delta.content
 
             filtered_headers = extract_list_content(filtered_headers)
-            return filtered_headers
+            if filtered_headers:
+                    return filtered_headers
+            else:
+                raise
 
         except Exception as e:
             attempt += 1
@@ -175,7 +181,10 @@ def topic_refiner(topics, query, max_retries=3, delay=2):
             
             filtered_headers = extract_list_content(filtered_headers)
             filtered_headers = topic_selector(filtered_headers, query)
-            return filtered_headers
+            if filtered_headers:
+                    return filtered_headers
+            else:
+                raise
 
         except Exception as e:
             attempt += 1
@@ -213,7 +222,10 @@ def topic_selector(headers, query, max_retries=3, delay=2):
                     filtered_headers += chunk.choices[0].delta.content
 
             filtered_headers = extract_list_content(filtered_headers)
-            return filtered_headers
+            if filtered_headers:
+                  return filtered_headers
+            else:
+                raise
 
         except Exception as e:
             attempt += 1
@@ -268,7 +280,10 @@ def querier(header, query, max_retries=3, delay=2):
                     thequery += chunk.choices[0].delta.content
 
             thequery = extract_list_content(thequery)
-            return thequery
+            if thequery:
+                  return thequery
+            else:
+                raise
         
         except Exception as e:
             attempt += 1
