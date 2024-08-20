@@ -403,7 +403,7 @@ def get_title_from_url(url):
     except requests.exceptions.RequestException as e:
         return None
 
-query = "上班族如何培養額外技能？"
+query = "深圳龍華區有甚麼好玩的地方"
 outline = headerizer(structurer(crawl_top_10_results(query), query), query)
 final_article = ""
 title = titler(outline, query)
@@ -438,5 +438,5 @@ for header in outline:
 
 final_article += "</body>\n</html>"
 
-with open(f"{query}.txt", a) as file:
+with open(f"{query}.txt", "a") as file:
     file.write(final_article)
