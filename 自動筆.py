@@ -9,7 +9,7 @@ import random
 
 client = OpenAI(
   base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = "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"
+  api_key = "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"
 )
 
 def crawl_top_10_results(query, nor=10):
@@ -405,7 +405,7 @@ def get_title_from_url(url):
     except requests.exceptions.RequestException as e:
         return None
 
-query = "深圳龍華區有甚麼好玩的地方"
+query = "上班族有甚麼額外技能可以培養"
 outline = headerizer(structurer(crawl_top_10_results(query), query), query)
 final_article = ""
 title = titler(outline, query)
