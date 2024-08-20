@@ -243,7 +243,9 @@ def topic_selector(headers, query, max_retries=3, delay=2):
         try:
             prompt = f"""
             i want to write a blog article of the keyword {query}.
-            now here is the proposed h2 headers for writing. but there might be duplicated aspects, or headers with unclear intent.
+            now here is the proposed h2 headers for writing:
+            {headers}
+            but there might be duplicated aspects, or headers with unclear intent.
             there might be vague headers with different level of specificity as well.
             delete these vague or inappropriate headers ONLY. no need to modify acceptable headers.
             return me a python list of h2 headers.
