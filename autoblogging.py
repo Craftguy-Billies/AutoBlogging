@@ -310,7 +310,7 @@ def get_title_from_url(url):
     except requests.exceptions.RequestException as e:
         return None
 
-query = "九龍塘有甚麼好玩的地方？"
+query = "全香港有什麼保齡球場？"
 outline = headerizer(structurer(crawl_top_10_results(query), query), query)
 print("+++++++++++++++++++++")
 print(outline)
@@ -329,6 +329,7 @@ for header in outline:
             bullet_points = combine_multiline_strings(bullet_points, bulletpt)
     final = ai_rewriter(bullet_points, header)
 
-    with open('trial.txt', 'a') as file:
+    with open('bowling.txt', 'a') as file:
       file.write("\n")
       file.write(final)
+      file.write("\n")
