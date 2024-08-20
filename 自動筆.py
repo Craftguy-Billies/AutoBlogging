@@ -47,7 +47,10 @@ def extract_list_content(input_string):
     end_index = input_string.rfind("]")
 
     if start_index != -1 and end_index != -1 and start_index < end_index:
-        return ast.literal_eval(input_string[start_index:end_index + 1])
+        try:
+            return ast.literal_eval(input_string[start_index:end_index + 1])
+        except (ValueError, SyntaxError):
+            return []
     else:
         return []
 
@@ -56,7 +59,10 @@ def extract_json_content(input_string):
     end_index = input_string.rfind("}")
 
     if start_index != -1 and end_index != -1 and start_index < end_index:
-        return ast.literal_eval(input_string[start_index:end_index + 1])
+        try:
+            return ast.literal_eval(input_string[start_index:end_index + 1])
+        except (ValueError, SyntaxError):
+            return {}
     else:
         return {}
 
