@@ -438,5 +438,5 @@ for header in outline:
 
 final_article += "</body>\n</html>"
 
-with open(f"{title}.txt", a) as file:
+with open(f"{query}.txt", a) as file:
     file.write(final_article)
