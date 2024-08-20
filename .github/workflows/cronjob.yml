@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # Specify the Python version you need
+          python-version: '3.11'  # Specify the Python version you need
 
       # Install dependencies
       - name: Install dependencies
@@ -30,3 +30,8 @@ jobs:
       # Runs your Python script
       - name: Run AutoBlogger script
         run: python autoblogging.py
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        id: auto-commit-action
+        with:
+            commit_message: Changed files
