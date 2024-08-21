@@ -407,7 +407,7 @@ def get_title_from_url(url):
     except requests.exceptions.RequestException as e:
         return None
 
-query = "香港免費公共乒乓球場"
+query = "深圳旅遊攻略 南山"
 outline = headerizer(structurer(crawl_top_10_results(query), query), query)
 final_article = ""
 title = titler(outline, query)
