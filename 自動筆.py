@@ -78,6 +78,7 @@ def titler(outline, query, max_retries=3, delay=2):
 
             i want a title that is clickbait enough, can convey the information I want to discuss about, in moderate length and humanized tone.
             it must be informational intent. words like "盤點", "攻略", "方法" are favored.
+            if you add numbers like '7大', make sure it matches the content of headers. (some headers may cover more than one information)
             you should SEO optimize the title with the keyword {query} naturally.
             return me a single JSON object with single key 'title' without premable and explanations.
             AGAIN: NO premable and explanation needed.
@@ -247,6 +248,7 @@ def topic_selector(headers, query, max_retries=3, delay=2):
             {headers}
             but there might be duplicated aspects, or headers with unclear intent.
             there might be vague headers with different level of specificity as well.
+            for example, '深圳必訪景點' and '深圳龍華區甜品店' is having significantly different level of specificity. in this case, remove the bigger coverage one, i.e. '深圳必訪景點'
             delete these vague or inappropriate headers ONLY. no need to modify acceptable headers.
             return me a python list of h2 headers.
             NO premable and explanation. I only want the list without other words.
