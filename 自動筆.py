@@ -6,11 +6,10 @@ import ast
 import json
 import time
 import random
-
+#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
 client = OpenAI(
   base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = "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"
-  # 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
+  api_key = "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"
 )
 
 def crawl_top_10_results(query, nor=10):
