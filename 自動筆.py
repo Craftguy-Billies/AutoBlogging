@@ -415,12 +415,12 @@ h1 = "<h1>" + str(title) + "</h1>"
 title_tag = "   <title>" + str(title) + "</title>"
 final_article += "<html>\n<head>\n"
 final_article += title_tag
-final_article += "</head>\n\n<body>\n"
+final_article += "\n</head>\n\n<body>\n"
 final_article += h1
-toc = "\n\n<h2>文章目錄</h2>\n<ul>\n"
+toc = "\n\n<div>\n<h2>文章目錄</h2>\n<ul>\n"
 for item in outline:
     toc += f"  <li>{item}</li>\n"
-toc += "</ul>\n\n"
+toc += "</ul>\n</div>\n\n"
 final_article += toc
 for header in outline:
     results = []
