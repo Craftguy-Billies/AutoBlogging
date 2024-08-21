@@ -374,7 +374,7 @@ def ai_rewriter(bullet_points, header):
     {bullet_points}
     i want to write paragraphs under the h2 header {header}
     generate me paragraphs. be detailed. you can elaborate to generate longer paragraphs, but make sure your elaboration is not by guessing or exaggerating.
-    do not include promotions. make sure your returned paragraphs are coherent and fluent.
+    do not include promotions, and make sure the tone of rewriting is professional. make sure your returned paragraphs are coherent and fluent, instead of point form like paragraphs.
     return me in a HTML form. text must be labelled with html tags.
     return me in traditional chinese. no premable and explanation.
     """
